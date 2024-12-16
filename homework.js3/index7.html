@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 1. Копирование с помощью оператора присваивания
+const original1 = { name: 'Иван', age: 25 };
+const copy1 = original1; // Копия с помощью присваивания
+console.log(original1); // { name: 'Иван', age: 25 }
+console.log(copy1);     // { name: 'Иван', age: 25 }
+copy1.name = 'Петр';
+console.log(original1); // { name: 'Петр', age: 25 }
+console.log(copy1);     // { name: 'Петр', age: 25 }
+
+// 2. Копирование с помощью Object.assign()
+const original2 = { name: 'Иван', age: 25 };
+const copy2 = Object.assign({}, original2); // Копия с помощью Object.assign()
+console.log(original2); // { name: 'Иван', age: 25 }
+console.log(copy2);     // { name: 'Иван', age: 25 }
+copy2.name = 'Петр';
+console.log(original2); // { name: 'Иван', age: 25 }
+console.log(copy2);     // { name: 'Петр', age: 25 }
+
+// 3. Копирование с помощью JSON.parse(JSON.stringify())
+const original3 = { name: 'Иван', age: 25 };
+const copy3 = JSON.parse(JSON.stringify(original3)); // Копия с помощью JSON
+console.log(original3); // { name: 'Иван', age: 25 }
+console.log(copy3);     // { name: 'Иван', age: 25 }
+copy3.name = 'Петр';
+console.log(original3); // { name: 'Иван', age: 25 }
+console.log(copy3);     // { name: 'Петр', age: 25 }
+
+// 4. Сравнение с помощью ===
+const obj1 = { name: 'Иван', age: 25 };
+const obj2 = { name: 'Иван', age: 25 };
+console.log(obj1 === obj2); // false
+
+// 5. Сравнение с помощью JSON.stringify()
+console.log(JSON.stringify(obj1) === JSON.stringify(obj2)); // true
+
+// 6. Сравнение с помощью Object.is()
+console.log(Object.is(obj1, obj2)); // false
+
+// 7. Получение массива ключей с помощью Object.keys()
+const obj3 = { name: 'Иван', age: 25 };
+const keys = Object.keys(obj3);
+console.log(keys); // ["name", "age"]
+
+// 8. Получение массива значений с помощью Object.values()
+const values = Object.values(obj3);
+console.log(values); // ["Иван", 25]
+
+// 9. Получение массива пар ключ-значение с помощью Object.entries()
+const entries = Object.entries(obj3);
+console.log(entries); // [["name", "Иван"], ["age", 25]]
+
+// 10. Заморозка объекта с помощью Object.freeze()
+const obj4 = { name: 'Иван', age: 25 };
+Object.freeze(obj4);
+obj4.name = 'Петр'; // Игнорируется
+console.log(obj4.name); // "Иван"
+
+// 11. Запечатывание объекта с помощью Object.seal()
+const obj5 = { name: 'Иван', age: 25 };
+Object.seal(obj5);
+obj5.city = 'Москва'; // Игнорируется
+obj5.age = 30; // Изменяется
+console.log(obj5); // { name: 'Иван', age: 30 }
+
+// 12. Предотвращение добавления новых свойств с помощью Object.preventExtensions()
+const obj6 = { name: 'Иван', age: 25 };
+Object.preventExtensions(obj6);
+obj6.city = 'Москва'; // Игнорируется
+console.log(obj6); // { name: 'Иван', age: 25 }
+
+// 13. Проверка, заморожен ли объект с помощью Object.isFrozen()
+Object.freeze(obj4);
+console.log(Object.isFrozen(obj4)); // true
+
+// 14. Проверка, запечатан ли объект с помощью Object.isSealed()
+Object.seal(obj5);
+console.log(Object.isSealed(obj5)); // true
+
+// 15. Проверка, можно ли добавлять новые свойства с помощью Object.isExtensible()
+console.log(Object.isExtensible(obj6)); // false
+    </script>
+</body>
+
+</html>
